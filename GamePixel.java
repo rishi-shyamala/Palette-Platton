@@ -30,5 +30,17 @@ public enum GamePixel{
    public String toString() {
       return shortName;
    }
+   
+   /**
+   *This sets the color of the GamePixel
+   *@param wantColor the color you wish
+   *to set the GamePixel to.
+   */
+   public void setColor(GamePixel wantColor)
+   {
+      color = wantColor.getColor();
+      name = wantColor.getName();
+      shortName = wantColor.getShortName();
+   }
 
 }
