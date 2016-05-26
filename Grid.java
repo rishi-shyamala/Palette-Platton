@@ -1,22 +1,109 @@
 import javax.swing.*;
 import java.awt.*;
 
+//@ version 2:37 p.m.
+
 @SuppressWarnings("serial")
 public class Grid extends JPanel {
 
 	private GamePixel[][] myColors;
 	private JLabel[][] myLabels;
+   private int rows, cols, cellWidth;
+   private double clumpPercentage;
 
-	public Grid(int rows, int cols, int cellWidth, double clumpPercentage) {
-		myColors = new GamePixel[rows][cols];
-		myLabels = new JLabel[rows][cols];
-
-		JLabel myLabel = new JLabel();
+	public Grid(int r, int c, int width, double cP) {
+		myColors = new GamePixel[r][c];
+		myLabels = new JLabel[r][c];
+      rows = r;
+      cols = c;
+      cellWidth = width;
+      clumpPercentage = cP;
 //		MyMouseListener myListener = new MyMouseListener(this);
-		Dimension labelPrefSize = new Dimension(cellWidth, cellWidth);
 		setLayout(new GridLayout(rows, cols));
+	   clump();
+      
+	}
 
-		int col = (int)(Math.random() * cols);
+	public GamePixel[][] getColors() {
+		return myColors;
+	}
+
+	public int randomizeCol(int col, int cols){
+		double ran1 = Math.random();
+		if ((ran1 < 0.5) && (col != cols)) {
+			return col ++;
+		} else if (ran1 < 1 && (col != 0)) {
+			return col --;
+		}else {
+			return -1;
+		}
+	}
+
+	public int randomizeRow(int row, int rows){
+		double ran1 = Math.random();
+		if ((ran1 < 0.5) && (row != rows)) {
+			return row ++;
+		} else if (ran1 < 1 && (row != 0)) {
+			return row --;
+		}else {
+			return -1;
+		}
+	}
+
+	public void labelPressed(JLabel label) {
+		for (int row = 0; row < myLabels.length; row++) {
+			for (int col = 0; col < myLabels[row].length; col++) {
+				// do something
+			}
+		}
+	}
+   
+   // edited 2:39 p.m. by 2019cbi
+   public void display()
+   {
+      for(int row = 0; row < myColors.length; row++){
+         for(int col = 0; col < myColors[0].length; col++){
+            myLabels[row][col].setBackground(myColors[row][col].getColor());
+         }
+      }
+   }
+   
+   // edited 2:44 p.m. by 2019cbi
+   //@param GamePixel pix the pixel you want to do
+   public void floodFill(GamePixel pix, int row, int col)
+   {
+      int r = row;
+      int c = col;
+      if(fill(pix, r, c))
+      {
+         if(row > 0){
+            fill(pix, --row, col);
+         } else if(row < myColors.length-1){
+            fill(pix, ++row, col);
+         } else if (col > 0){
+            fill(pix, row, --col);
+         } else if (col < myColors[0].length-1){
+            fill(pix, row, ++col);
+         }
+      }
+   }
+   
+   public boolean fill(GamePixel pix, int row, int col)
+   {
+      if(myColors[row][col].getColor().equals(pix.getColor()))
+      {
+         myColors[row][col].setColor(GamePixel.ORANGE);
+         return true;
+      }
+      return false;
+   }
+   
+   // edited 2:44 p.m. by 2019cbi
+   public void clump()
+   {
+		JLabel myLabel = new JLabel();
+		Dimension labelPrefSize = new Dimension(cellWidth, cellWidth);
+     	int col = (int)(Math.random() * cols);
 		int row = (int)(Math.random() * rows);
 		GamePixel c = GamePixel.BLUE;
 		double ran = Math.random();
@@ -79,40 +166,5 @@ public class Grid extends JPanel {
 			add(myLabel);
 			myLabels[row][col] = myLabel;
 		}
-		
-	}
-
-	public GamePixel[][] getColors() {
-		return myColors;
-	}
-
-	public int randomizeCol(int col, int cols){
-		double ran1 = Math.random();
-		if ((ran1 < 0.5) && (col != cols)) {
-			return col ++;
-		} else if (ran1 < 1 && (col != 0)) {
-			return col --;
-		}else {
-			return -1;
-		}
-	}
-
-	public int randomizeRow(int row, int rows){
-		double ran1 = Math.random();
-		if ((ran1 < 0.5) && (row != rows)) {
-			return row ++;
-		} else if (ran1 < 1 && (row != 0)) {
-			return row --;
-		}else {
-			return -1;
-		}
-	}
-
-	public void labelPressed(JLabel label) {
-		for (int row = 0; row < myLabels.length; row++) {
-			for (int col = 0; col < myLabels[row].length; col++) {
-				// do something
-			}
-		}
-	}
+   }
 }
