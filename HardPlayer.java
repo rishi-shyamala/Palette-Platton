@@ -11,15 +11,22 @@ public class HardPlayer extends Player{
       boolean[][] mark = new boolean[colors.length][colors[0].length];
       for(int i = 0; i < colors.length; i++){
          for(int j = 0; j < colors[0].length; j++){
-            if(i == 0 && j == 0)
-               printColors(colors);
+            
             GamePixel[][] temp = copyArray(colors);
+            
+            if(i == 0 && j == 0)
+               printColors(temp);
             boolean[][] mark2 = new boolean[colors.length][colors[0].length];
             if(isTouchingAIBlock(colors, i, j) && !colors[i][j].getColor().equals(GamePixel.CYAN.getColor())){
                floodFill(temp, mark2, i, j, colors[i][j]);
+               
                int[] numbers = findMax(temp);
                int currM = numbers[0];
+               
+               System.out.println(i + "  " + j + "  " + max + "  " + currM);
+               
                if(currM > max){
+                  System.out.println(max + " changed to " + currM);
                   max = currM;
                   mRow = i;
                   mCol = j;
@@ -34,16 +41,25 @@ public class HardPlayer extends Player{
       return colors;
    }
       
-   private GamePixel[][] copyArray(GamePixel[][] colors){
+   public GamePixel[][] copyArray(GamePixel[][] colors){
       GamePixel[][] temp = new GamePixel[colors.length][colors[0].length];
       GamePixel c;
       for(int i = 0; i < colors.length; i++){
          for(int j = 0; j < colors[0].length; j++){
-            temp[i][j] = GamePixel.CYAN;//testing for now
-            temp[i][j].setColor(colors[i][j]);
+            temp[i][j] = whatPixel(colors[i][j]);
          }
       }
       return temp;
+   }
+   
+   public GamePixel whatPixel(GamePixel c){
+      if(c.getName().equals("Green")) return GamePixel.GREEN;
+      if(c.getName().equals("Red")) return GamePixel.RED;
+      if(c.getName().equals("Blue")) return GamePixel.BLUE;
+      if(c.getName().equals("Yellow")) return GamePixel.YELLOW;
+      if(c.getName().equals("Cyan")) return GamePixel.CYAN;
+      if(c.getName().equals("Orange")) return GamePixel.ORANGE;
+      else return GamePixel.ORANGE;
    }
    
    public int[] findMax(GamePixel[][] colors){   
