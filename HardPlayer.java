@@ -24,11 +24,8 @@ public class HardPlayer extends Player{
                
                int[] numbers = findMax(temp);
                int currM = numbers[0];
-               
-               System.out.println(i + "  " + j + "  " + max + "  " + currM);
-               
+                              
                if((currM+num) > max){
-                  System.out.println(max + " changed to " + currM);
                   max = (currM+num);
                   mRow = i;
                   mCol = j;
@@ -37,7 +34,6 @@ public class HardPlayer extends Player{
          }
       }
       //printColors(colors);
-      System.out.println(max + "   row and column   " + mRow + " " + mCol);
       floodFill(colors, mark, mRow, mCol, colors[mRow][mCol]);
       //printColors(colors);
       return colors;
@@ -74,9 +70,7 @@ public class HardPlayer extends Player{
             boolean[][] mark = new boolean[colors.length][colors[0].length];
             if(isTouchingAIBlock(colors, i, j) && !colors[i][j].getColor().equals(GamePixel.CYAN.getColor())){ //valid block?
                int num = floodSearch(colors, mark, i, j, colors[i][j], 0);
-               //System.out.println(i + "  " + j + "  " + max + "  " + num);
                if(num > max){
-                  //System.out.println(max + "\tchanged to\t" + num);
                   max = num;
                   mRow = i;
                   mCol = j;

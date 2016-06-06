@@ -38,7 +38,6 @@ public class EasyPlayer extends Player{
             }
          }
       }
-      System.out.println(mRow2 + "  " + mCol2 + "  " + max2);
       //printColors(colors);
       floodFill(colors, mark2, mRow2, mCol2, colors[mRow2][mCol2]);
       //printColors(colors);

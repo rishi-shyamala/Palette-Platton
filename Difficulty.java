@@ -7,7 +7,13 @@ import java.awt.*;
 import javax.swing.event.*;
 
 public class Difficulty extends JPanel {
-  int value;
+  public static int value;
+  static JFrame frame;
+  
+  public static int getValue(){
+      return value;
+  }
+  
   public Difficulty(JSlider ArtificialI) {
 
     super(true);
@@ -23,8 +29,7 @@ public class Difficulty extends JPanel {
       public void stateChanged(ChangeEvent evt){
          JSlider ArtificialI = (JSlider) evt.getSource();
          if (!ArtificialI.getValueIsAdjusting()) {
-            int temp = ArtificialI.getValue();
-            value = temp;                          //Change this to print to file
+            value = ArtificialI.getValue();
         }
       }
    });
@@ -42,7 +47,16 @@ public class Difficulty extends JPanel {
       add(button, BorderLayout.SOUTH);
         
   }
-
+    public static void main(String args[]) {
+      JSlider ArtificialI = new JSlider();
+      frame = new JFrame("Difficulty");
+      frame.setSize(200, 250);
+      frame.setLocation(860, 310);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setContentPane(new Difficulty(ArtificialI));
+      frame.pack();
+      frame.setVisible(true);
+     }
      private class ButtonListener implements ActionListener
      {
         private String[] args;
@@ -52,15 +66,4 @@ public class Difficulty extends JPanel {
         Startup.main(args);
         }
      }
-
-  public static void main(String args[]) {
-    JSlider ArtificialI = new JSlider();
-    JFrame frame = new JFrame("Difficulty");
-    frame.setSize(200, 250);
-    frame.setLocation(860, 310);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setContentPane(new Difficulty(ArtificialI));
-    frame.pack();
-    frame.setVisible(true);
-  }
 }

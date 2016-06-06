@@ -14,9 +14,9 @@ public class MediumPlayer extends Player{
             boolean[][] mark = new boolean[colors.length][colors[0].length];
             if(isTouchingAIBlock(colors, i, j) && !colors[i][j].getColor().equals(GamePixel.CYAN.getColor())){ //valid block?
                int num = floodSearch(colors, mark, i, j, colors[i][j], 0);
-               System.out.println(i + "  " + j + "  " + max + "  " + num);
+               // System.out.println(i + "  " + j + "  " + max + "  " + num);
                if(num > max){
-                  System.out.println(max + "\tchanged to\t" + num);
+                  // System.out.println(max + "\tchanged to\t" + num);
                   max = num;
                   mRow = i;
                   mCol = j;
@@ -25,7 +25,7 @@ public class MediumPlayer extends Player{
          }
       }
       //printColors(colors);
-      System.out.println(max + "   row and column   " + mRow + " " + mCol);
+      // System.out.println(max + "   row and column   " + mRow + " " + mCol);
       floodFill(colors, mark2, mRow, mCol, colors[mRow][mCol]);
       //printColors(colors);
       return colors;
