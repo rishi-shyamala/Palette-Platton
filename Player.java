@@ -58,14 +58,26 @@ public abstract class Player{
         int e = 1;
         return(a+b+c+d+e);
     }
-    
+   
+   /***
+   *This will fill the blocks that are 
+   *the same color and touching the chosen block.
+   *This is the helper method for floodFill().
+   *@param colors stores the colors
+   *the AI will use
+   *@param mark stores the boolean array
+   *of the squares visited
+   *@param row the current row of the array
+   *@param col the current column of the array
+   *@param originalPixel used to compare colors
+   ***/ 
    public void floodFill(GamePixel[][] colors, boolean[][] mark,
                              int row, int col, GamePixel originalPixel) {
         for(int i = 0; i < colors.length; i++){
          for(int j = 0; j < colors[0].length; j++){
             boolean[][] mark3 = new boolean[colors.length][colors[0].length];
             if(isTouchingAIBlock(colors, i, j) && colors[i][j].getName().equals(originalPixel.getName())){
-               floodFillReal(colors, mark3, row, col, originalPixel);
+               floodFillReal(colors, mark3, i, j, originalPixel);
             }
          }
         }
@@ -74,7 +86,7 @@ public abstract class Player{
    /***
    *This will fill the blocks that are 
    *the same color and touching the chosen block.
-   *This is similar to floodSearch()
+   *This is similar to floodSearch().
    *@param colors stores the colors
    *the AI will use
    *@param mark stores the boolean array
