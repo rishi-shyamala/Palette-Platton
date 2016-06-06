@@ -14,8 +14,6 @@ public class HardPlayer extends Player{
             
             GamePixel[][] temp = copyArray(colors);
             
-            if(i == 0 && j == 0)
-               printColors(temp);
             boolean[][] mark2 = new boolean[colors.length][colors[0].length];
             boolean[][] mark3 = new boolean[colors.length][colors[0].length];
             if(isTouchingAIBlock(colors, i, j) && !colors[i][j].getColor().equals(GamePixel.CYAN.getColor())){
@@ -33,9 +31,7 @@ public class HardPlayer extends Player{
             }
          }
       }
-      //printColors(colors);
       floodFill(colors, mark, mRow, mCol, colors[mRow][mCol]);
-      //printColors(colors);
       return colors;
    }
       
