@@ -18,7 +18,6 @@ public class Grid extends JPanel {
       cols = c;
       cellWidth = width;
       clumpPercentage = cP;
-//		MyMouseListener myListener = new MyMouseListener(this);
 		setLayout(new GridLayout(rows, cols));
 	   clump();
       
@@ -38,7 +37,6 @@ public class Grid extends JPanel {
          for(GamePixel p: arr){
             System.out.print(p);
          }  
-         //System.out.println();
       }
       System.out.println();
    }
@@ -79,44 +77,11 @@ public class Grid extends JPanel {
       for(int row = 0; row < myColors.length; row++){
          for(int col = 0; col < myColors[0].length; col++){
             myLabels[row][col].setBackground(myColors[row][col].getColor());
-            //add(myLabels[row][col]);
          }
          
       }
    }
-   
-// // // // // // // // // // //    // edited 2:44 p.m. by 2019cbi
-// // // // // // // // // // //    //@param GamePixel pix the pixel you want to do
-// // // // // // // // // // //    public void floodFill(GamePixel pix, int row, int col) ///////////UNOFFICIAL floodfill
-// // // // // // // // // // //    {
-// // // // // // // // // // //       int r = row;
-// // // // // // // // // // //       int c = col;
-// // // // // // // // // // //       if(fill(pix, r, c))
-// // // // // // // // // // //       {
-// // // // // // // // // // //          if(row > 0){
-// // // // // // // // // // //             fill(pix, --row, col);
-// // // // // // // // // // //          } else if(row < myColors.length-1){
-// // // // // // // // // // //             fill(pix, ++row, col);
-// // // // // // // // // // //          } else if (col > 0){
-// // // // // // // // // // //             fill(pix, row, --col);
-// // // // // // // // // // //          } else if (col < myColors[0].length-1){
-// // // // // // // // // // //             fill(pix, row, ++col);
-// // // // // // // // // // //          }
-// // // // // // // // // // //       }
-// // // // // // // // // // //    }
-// // // // // // // // // // //    
-// // // // // // // // // // //    public boolean fill(GamePixel pix, int row, int col)
-// // // // // // // // // // //    {
-// // // // // // // // // // //       if(myColors[row][col].getColor().equals(pix.getColor()))
-// // // // // // // // // // //       {
-// // // // // // // // // // //          myColors[row][col].setColor(GamePixel.ORANGE);
-// // // // // // // // // // //          return true;
-// // // // // // // // // // //       }
-// // // // // // // // // // //       return false;
-// // // // // // // // // // //    }
-// // // // // // // // // // //    
-
-   // edited 2:44 p.m. by 2019cbi
+// edited 2:44 p.m. by 2019cbi
    public void clump()
    {
 		JLabel myLabel = new JLabel();
@@ -141,9 +106,7 @@ public class Grid extends JPanel {
 		myColors[row][col] = firstColor;
 		GamePixel previousColor = firstColor;
 		firstLabel.setBackground(firstColor.getColor());
-//		myLabel.addMouseListener(myListener);
 		firstLabel.setPreferredSize(labelPrefSize);
-		//add(firstLabel);
 		myLabels[row][col] = firstLabel;
 		for (int x = 0; x < rows; x++) {
          for(int y = 0; y < cols; y++){
@@ -180,7 +143,6 @@ public class Grid extends JPanel {
    			myLabel.setOpaque(true);
    			myColors[x][y] = myColor;
    			myLabel.setBackground(myColor.getColor());
-   //			myLabel.addMouseListener(myListener);
    			myLabel.setPreferredSize(labelPrefSize);
    			add(myLabel);
    			myLabels[x][y] = myLabel;
@@ -196,47 +158,28 @@ public class Grid extends JPanel {
    public void floodFill(boolean[][] mark,
                              int row, int col, GamePixel originalPixel) { /////// OFFICIAL flood fill
                              
-        //System.out.println("Made it past 0!");                     //test
-        
-        //System.out.println(row + "\t" + col);
-        
-        // System.out.print(time + ".\t");
-//         printColors(); //prints row
-        
         // make sure in bounds
         if (row < 0) return;
         if (col < 0) return;
         if (row >= myColors.length) return;
         if (col >= myColors[0].length) return;
         
-        //System.out.println("Made it past 1!");   
-        
         // new Pixel?
 
         if (mark[row][col]) return;
         
-        //System.out.println("Made it past 2!");  
-        
         // make sure this pixel is the right color to fill
         if (!myColors[row][col].getColor().equals(originalPixel.getColor())) return; 
-               
-        //System.out.println("Made it past 3!");  
-        
+
         // fill pixel with target color and mark it as visited
         myColors[row][col] = GamePixel.ORANGE;
         mark[row][col] = true;
-        
-        //System.out.println("Made it past 4! and set the color");  
-        
-        //test 
-        
+
         // recursive (depth-first search)
         floodFill(mark, row - 1, col, originalPixel);
         floodFill(mark, row + 1, col, originalPixel);
         floodFill(mark, row, col - 1, originalPixel);
         floodFill(mark, row, col + 1, originalPixel);
-        
-        //System.out.println("Made it past 5! Finished!"); 
     } 
 
 }

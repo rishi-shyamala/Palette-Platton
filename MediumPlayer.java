@@ -25,7 +25,7 @@ public class MediumPlayer extends Player{
          }
       }
       //printColors(colors);
-      // System.out.println(max + "   row and column   " + mRow + " " + mCol);
+      // System.out.println(max + "   row and column   " + mRow + " " + mCol);Fprint
       floodFill(colors, mark2, mRow, mCol, colors[mRow][mCol]);
       //printColors(colors);
       return colors;

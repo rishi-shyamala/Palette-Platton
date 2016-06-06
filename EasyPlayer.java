@@ -38,9 +38,9 @@ public class EasyPlayer extends Player{
             }
          }
       }
-      //printColors(colors);
+
       floodFill(colors, mark2, mRow2, mCol2, colors[mRow2][mCol2]);
-      //printColors(colors);
+
       return colors;
    }
    
