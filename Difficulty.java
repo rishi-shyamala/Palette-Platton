@@ -1,32 +1,65 @@
 import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
+import java.util.Hashtable;
+import javax.swing.*;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.event.*;
 
 public class Difficulty extends JPanel {
-
-  public Difficulty() {
+  int value;
+  public Difficulty(JSlider ArtificialI) {
 
     super(true);
     this.setLayout(new BorderLayout());
-    JSlider ArtificialI = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+    ArtificialI = new JSlider(JSlider.HORIZONTAL, -1, 1, 0);
 
-    ArtificialI.setMinorTickSpacing(10);
-    ArtificialI.setMajorTickSpacing(10);
+    ArtificialI.setMinorTickSpacing(1);
+    ArtificialI.setMajorTickSpacing(1);
     ArtificialI.setPaintTicks(true);
     ArtificialI.setPaintLabels(true);
     ArtificialI.setSnapToTicks(true);
+    ArtificialI.addChangeListener(new ChangeListener(){
+      public void stateChanged(ChangeEvent evt){
+         JSlider ArtificialI = (JSlider) evt.getSource();
+         if (!ArtificialI.getValueIsAdjusting()) {
+            int temp = ArtificialI.getValue();
+            value = temp;                          //Change this to print to file
+        }
+      }
+   });
+ 
+    
+      Hashtable<Integer, JLabel> table = new Hashtable<Integer, JLabel>();
+      table.put (-1, new JLabel("Easy"));
+      table.put (0, new JLabel("Medium"));
+      table.put (1, new JLabel("Hard"));
+      ArtificialI.setLabelTable (table);
 
-    ArtificialI.setLabelTable(ArtificialI.createStandardLabels(10));
-
-    add(ArtificialI, BorderLayout.CENTER);
+      add(ArtificialI, BorderLayout.NORTH);
+      JButton button = new JButton("Back");
+      button.addActionListener(new ButtonListener());
+      add(button, BorderLayout.SOUTH);
+        
   }
 
-  public static void main(String s[]) {
-    JFrame frame = new JFrame("Slider Example");
+     private class ButtonListener implements ActionListener
+     {
+        private String[] args;
+        public void actionPerformed(ActionEvent e)
+        {
+        frame.dispose();
+        Startup.main(args);
+        }
+     }
+
+  public static void main(String args[]) {
+    JSlider ArtificialI = new JSlider();
+    JFrame frame = new JFrame("Difficulty");
+    frame.setSize(200, 250);
+    frame.setLocation(860, 310);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setContentPane(new Difficulty());
+    frame.setContentPane(new Difficulty(ArtificialI));
     frame.pack();
     frame.setVisible(true);
   }

@@ -1,21 +1,7 @@
-/***
-*This HardPlayer class is an AI that will choose
-*the best move, at one move ahead, so it is "hard".
-*
-*@author Chris
-*@version 1.1.2
-*@since 3:29 PM 6/5/16
-***/
+//@author 2019cbi
+//@Version 1.0
 
 public class HardPlayer extends Player{
-   /***
-   *This will think of the move the AI plays.
-   *@param colors stores the colors
-   *the AI will use
-   *@return GamePixel[][] returns the 
-   *array of the updated Colors with the
-   *AI's move made inside of it
-   ***/
    public GamePixel[][] thinkMove(GamePixel[][] colors)
    {
       //flood search stuff
@@ -36,11 +22,13 @@ public class HardPlayer extends Player{
                int num = floodSearch(temp, mark3, i, j, colors[i][j], 0);
                floodFill(temp, mark2, i, j, colors[i][j]);
                
-               int currM = findMax(temp);
+               int[] numbers = findMax(temp);
+               int currM = numbers[0];
                
                System.out.println(i + "  " + j + "  " + max + "  " + currM);
                
                if((currM+num) > max){
+                  System.out.println(max + " changed to " + currM);
                   max = (currM+num);
                   mRow = i;
                   mCol = j;
@@ -48,18 +36,13 @@ public class HardPlayer extends Player{
             }
          }
       }
+      //printColors(colors);
+      System.out.println(max + "   row and column   " + mRow + " " + mCol);
       floodFill(colors, mark, mRow, mCol, colors[mRow][mCol]);
+      //printColors(colors);
       return colors;
    }
-     
-   /***
-   *This will copy the colors array, so to not
-   *affect the original array when changing
-   *individual elements in the array.
-   *@param colors stores the colors
-   *the AI will use
-   *@return GamePixel[][] returns the copied array based off of the original one
-   ***/ 
+      
    public GamePixel[][] copyArray(GamePixel[][] colors){
       GamePixel[][] temp = new GamePixel[colors.length][colors[0].length];
       GamePixel c;
@@ -71,12 +54,6 @@ public class HardPlayer extends Player{
       return temp;
    }
    
-   /***
-   *This method will return the GamePixel constant of the 
-   *GamePixel the method was given.
-   *@param c GamePixel you are trying to find the color of
-   *@return GamePixel returns the GamePixel constant.
-   ***/ 
    public GamePixel whatPixel(GamePixel c){
       if(c.getName().equals("Green")) return GamePixel.GREEN;
       if(c.getName().equals("Red")) return GamePixel.RED;
@@ -87,15 +64,8 @@ public class HardPlayer extends Player{
       else return GamePixel.ORANGE;
    }
    
-   /***
-   *This will find the maximum path that the move
-   *can make that was given.
-   *@param colors stores the colors
-   *the AI will use
-   *@return int the value of the maximum number
-   *of blocks.
-   ***/ 
-   public int findMax(GamePixel[][] colors){
+   public int[] findMax(GamePixel[][] colors){   
+      int[] rac = new int[3];  
       int max = 0;
       int mRow = 0;
       int mCol = 0;
@@ -104,7 +74,9 @@ public class HardPlayer extends Player{
             boolean[][] mark = new boolean[colors.length][colors[0].length];
             if(isTouchingAIBlock(colors, i, j) && !colors[i][j].getColor().equals(GamePixel.CYAN.getColor())){ //valid block?
                int num = floodSearch(colors, mark, i, j, colors[i][j], 0);
+               //System.out.println(i + "  " + j + "  " + max + "  " + num);
                if(num > max){
+                  //System.out.println(max + "\tchanged to\t" + num);
                   max = num;
                   mRow = i;
                   mCol = j;
@@ -112,7 +84,26 @@ public class HardPlayer extends Player{
             }
          }
       }
-      return max;
+      
+      rac[0] = max;
+      rac[1] = mRow;
+      rac[2] = mCol;
+      return rac;
    }
    
+   public GamePixel[][] returnMove()
+   {
+      GamePixel[][] a = new GamePixel[1][1]; //filler
+      return a;
+   }
+   
+   public boolean isTouchingAIBlock(GamePixel[][] colors, int row, int col){
+      GamePixel oC = GamePixel.CYAN;
+      if((row > 0) && colors[row-1][col].getColor().equals(oC.getColor()))  return true;
+      if((row < colors.length-1) && colors[row+1][col].getColor().equals(oC.getColor()))  return true;
+      if((col > 0) && colors[row][col-1].getColor().equals(oC.getColor()))  return true;
+      if((col < colors[0].length-1) && colors[row][col+1].getColor().equals(oC.getColor()))  return true;
+      return false;
+         
+   } 
 }
