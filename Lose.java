@@ -4,9 +4,23 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JSlider;
 
+/***
+*This Grid class displays the "You Lose" screen.
+*@author Rishi
+*@version 1.1.2
+*@since 10:48 PM 6/5/16
+***/
 public class Lose
 {
+   /**
+   *This is the JFrame used for displaying "You Lose" screen as well as reset and quit buttons.
+   **/
    public static JFrame frame;
+   
+   /***
+   *This method is used for displaying "You Lost" 
+   *as well as providing a reset button to start over and quit button to quit the game.
+   ***/
    public static void main(String[] args)
    {  
       JPanel StartScreen = new JPanel();
