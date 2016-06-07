@@ -77,7 +77,7 @@ public class Difficulty extends JPanel {
       frame.setVisible(true);
      }
      /**
-      * This class is specific to the bvutton listener.
+      * This class is specific to the button listener.
       * */
      private class ButtonListener implements ActionListener
      {
