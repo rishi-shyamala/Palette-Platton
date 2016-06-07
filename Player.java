@@ -45,7 +45,7 @@ public abstract class Player{
         if (mark[row][col]) return 0;
     
         // make sure this pixel is the right color to fill
-        if (!colors[row][col].getColor().equals(originalPixel.getColor())) return 0; 
+        if (!colors[row][col].getColor().equals(originalPixel.getColor()) && !colors[row][col].getName().equals(GamePixel.ORANGE.getName())) return 0; 
 
         //mark it as visited
         mark[row][col] = true;
@@ -115,10 +115,10 @@ public abstract class Player{
         mark[row][col] = true;
    
         // recursive (depth-first search)
-        floodFill(colors, mark, row - 1, col, originalPixel);
-        floodFill(colors, mark, row + 1, col, originalPixel);
-        floodFill(colors, mark, row, col - 1, originalPixel);
-        floodFill(colors, mark, row, col + 1, originalPixel);       
+        floodFillReal(colors, mark, row - 1, col, originalPixel);
+        floodFillReal(colors, mark, row + 1, col, originalPixel);
+        floodFillReal(colors, mark, row, col - 1, originalPixel);
+        floodFillReal(colors, mark, row, col + 1, originalPixel);       
     }
     
    /***
@@ -151,10 +151,10 @@ public abstract class Player{
    ***/
    public boolean isTouchingAIBlock(GamePixel[][] colors, int row, int col){
       GamePixel oC = GamePixel.CYAN;
-      if((row > 0) && colors[row-1][col].getColor().equals(oC.getColor()))  return true;
-      if((row < colors.length-1) && colors[row+1][col].getColor().equals(oC.getColor()))  return true;
-      if((col > 0) && colors[row][col-1].getColor().equals(oC.getColor()))  return true;
-      if((col < colors[0].length-1) && colors[row][col+1].getColor().equals(oC.getColor()))  return true;
+      if((row > 0) && colors[row-1][col].getName().equals(oC.getName()))  return true;
+      if((row < colors.length-1) && colors[row+1][col].getName().equals(oC.getName()))  return true;
+      if((col > 0) && colors[row][col-1].getName().equals(oC.getName()))  return true;
+      if((col < colors[0].length-1) && colors[row][col+1].getName().equals(oC.getName()))  return true;
       return false;
          
    } 
