@@ -5,7 +5,9 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.event.*;
-
+/** This class includes a slider for 
+ * 
+ * */
 public class Difficulty extends JPanel {
   public static int value;
   static JFrame frame;
