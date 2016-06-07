@@ -5,7 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JSlider;
 
 /***
-* Sets up buttons and JLabels for controlling difficulty and playing the game.
+*This is essentially the Driver of the game.
+*@author Rishi
+*@version 1.1.2
+*@since 11:07 PM 6/5/16
 ***/
 public class Startup
 {
