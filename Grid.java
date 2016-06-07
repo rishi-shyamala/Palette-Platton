@@ -1,36 +1,70 @@
 import javax.swing.*;
 import java.awt.*;
 
-//@ version 2:37 p.m.
+/***
+*This Grid class creates a GamePixel[][] array to store the colors of the game.
+*@author Suresh
+*@version 1.1.2
+*@since 10:48 PM 6/5/16
+***/
 
 @SuppressWarnings("serial")
 public class Grid extends JPanel {
 
-	private GamePixel[][] myColors;
-	private JLabel[][] myLabels;
+   /**
+   *This is the GamePixel[][] array used to store the colors.
+   **/
+   private GamePixel[][] myColors;
+   /**
+   *This is the JLabel[][] array used to show the colors.
+   **/
+   private JLabel[][] myLabels;
+   /**
+   *These are the constants for the Grid size and labels's size.
+   **/
    private int rows, cols, cellWidth;
+   /**
+   *This the constant for how clumped the Grid should be.
+   **/
    private double clumpPercentage;
-
-	public Grid(int r, int c, int width, double cP) {
-		myColors = new GamePixel[r][c];
-		myLabels = new JLabel[r][c];
-      rows = r;
-      cols = c;
-      cellWidth = width;
-      clumpPercentage = cP;
-		setLayout(new GridLayout(rows, cols));
-	   clump();
-      
+   
+   /***
+   *This is the constructor for Grid.java.
+   *@param r the number of rows.
+   *@param c the number of columns.
+   *@param width the width of labels.
+   *@param cP the clump percentage.
+   ***/
+   public Grid(int r, int c, int width, double cP) {
+	myColors = new GamePixel[r][c];
+	myLabels = new JLabel[r][c];
+	rows = r;
+	cols = c;
+	cellWidth = width;
+	clumpPercentage = cP;
+	setLayout(new GridLayout(rows, cols));
+	clump();
 	}
-   //edited 9:55 5/29/16 by 2019cbi
+   /***
+   *This is the mutator method for the GamePixel[][] myColors.
+   *@param colors the GamePixel[][] of colors.
+   ***/
    public void setColors(GamePixel[][] colors) {
-		myColors = colors;
-	}
+	myColors = colors;
+   }
    
-	public GamePixel[][] getColors() {
-		return myColors;
-	}
+   /***
+   *This is the accessor method for the GamePixel[][] myColors.
+   *@return colors the GamePixel[][] of colors.
+   ***/
+   public GamePixel[][] getColors() {
+	return myColors;
+   }
    
+   /***
+   *This prints out the GamePixel[][] colors.
+   *It is used mainly for testing purposes.
+   ***/
    public void printColors()
    {
       for(GamePixel[] arr: myColors){
@@ -40,18 +74,27 @@ public class Grid extends JPanel {
       }
       System.out.println();
    }
-
-	public int randomizeCol(int col, int cols){
-		double ran1 = Math.random();
-		if ((ran1 < 0.5) && (col != cols)) {
-			return col ++;
-		} else if (ran1 < 1 && (col != 0)) {
-			return col --;
-		}else {
-			return -1;
-		}
+	
+   /***
+   *This is one of two helper methods for clump().
+   *@param col the current column
+   *@param cols the number of columns
+   ***/
+   public int randomizeCol(int col, int cols){
+	double ran1 = Math.random();
+	if ((ran1 < 0.5) && (col != cols)) {
+		return col ++;
+	} else if (ran1 < 1 && (col != 0)) {
+		return col --;
+	}else {
+		return -1;
 	}
-
+   }
+   /***
+   *This is one of two helper methods for clump().
+   *@param row the current row
+   *@param rows the number of rows
+   ***/
 	public int randomizeRow(int row, int rows){
 		double ran1 = Math.random();
 		if ((ran1 < 0.5) && (row != rows)) {
@@ -62,16 +105,10 @@ public class Grid extends JPanel {
 			return -1;
 		}
 	}
-
-	public void labelPressed(JLabel label) {
-		for (int row = 0; row < myLabels.length; row++) {
-			for (int col = 0; col < myLabels[row].length; col++) {
-				// do something
-			}
-		}
-	}
    
-   // edited 2:39 p.m. by 2019cbi
+   /***
+   *This displays the GamePixel[][] myColors.
+   ***/
    public void display()
    {
       for(int row = 0; row < myColors.length; row++){
@@ -81,7 +118,10 @@ public class Grid extends JPanel {
          
       }
    }
-// edited 2:44 p.m. by 2019cbi
+   
+   /***
+   *This sets up the beginning array, and randomizes everything for myColors.
+   ***/
    public void clump()
    {
 		JLabel myLabel = new JLabel();
