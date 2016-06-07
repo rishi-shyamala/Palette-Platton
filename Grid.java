@@ -27,22 +27,34 @@ public class Grid extends JPanel {
    *This the constant for how clumped the Grid should be.
    **/
    private double clumpPercentage;
-
-	public Grid(int r, int c, int width, double cP) {
-		myColors = new GamePixel[r][c];
-		myLabels = new JLabel[r][c];
-      rows = r;
-      cols = c;
-      cellWidth = width;
-      clumpPercentage = cP;
-		setLayout(new GridLayout(rows, cols));
-	   clump();
-      
+   
+   /***
+   *This is the constructor for Grid.java.
+   *@param r the number of rows.
+   *@param c the number of columns.
+   *@param width the width of labels.
+   *@param cP the clump percentage.
+   ***/
+   public Grid(int r, int c, int width, double cP) {
+	myColors = new GamePixel[r][c];
+	myLabels = new JLabel[r][c];
+	rows = r;
+	cols = c;
+	cellWidth = width;
+	clumpPercentage = cP;
+	setLayout(new GridLayout(rows, cols));
+	clump();
 	}
-   //edited 9:55 5/29/16 by 2019cbi
+   /***
+   *This is the constructor for Grid.java.
+   *@param r the number of rows.
+   *@param c the number of columns.
+   *@param width the width of labels.
+   *@param cP the clump percentage.
+   ***/
    public void setColors(GamePixel[][] colors) {
-		myColors = colors;
-	}
+	myColors = colors;
+   }
    
 	public GamePixel[][] getColors() {
 		return myColors;
