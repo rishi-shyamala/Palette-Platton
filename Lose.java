@@ -50,6 +50,8 @@ public class Lose
       frame.getContentPane().add(StartScreen);
       frame.setVisible(true);
    }
+    /** This is the listener to quit the game.
+     * */
     
     private static class quitListener implements ActionListener
    {
@@ -58,6 +60,10 @@ public class Lose
       frame.dispose();
       }
    }
+   
+   /** This is the listener to reset the game
+    * 
+    * */
    private static class playListener implements ActionListener
    {  
       private String[] args;
