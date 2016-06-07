@@ -1,2 +1,2 @@
-# Palette-Platoon
+# Palette-Platton
 Palette Platoon- The Game
