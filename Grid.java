@@ -1,14 +1,31 @@
 import javax.swing.*;
 import java.awt.*;
 
-//@ version 2:37 p.m.
+/***
+*This Grid class creates a GamePixel[][] array to store the colors of the game.
+*@author Suresh
+*@version 1.1.2
+*@since 10:48 PM 6/5/16
+***/
 
 @SuppressWarnings("serial")
 public class Grid extends JPanel {
 
-	private GamePixel[][] myColors;
-	private JLabel[][] myLabels;
+   /**
+   *This is the GamePixel[][] array used to store the colors.
+   **/
+   private GamePixel[][] myColors;
+   /**
+   *This is the JLabel[][] array used to show the colors.
+   **/
+   private JLabel[][] myLabels;
+   /**
+   *These are the constants for the Grid size and labels's size.
+   **/
    private int rows, cols, cellWidth;
+   /**
+   *This the constant for how clumped the Grid should be.
+   **/
    private double clumpPercentage;
 
 	public Grid(int r, int c, int width, double cP) {
