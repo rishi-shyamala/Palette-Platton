@@ -5,17 +5,31 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.event.*;
-/** This class includes a slider for 
+/** This class includes a slider for the difficulty of the AI class.
  * 
+ * @author Rishi
+ * @version 1.1.2
+ * @since 12:05 AM 06/07/2016
  * */
 public class Difficulty extends JPanel {
+  /**
+   * This integer is the abitrary number assigned to the different difficulties
+   * */
   public static int value;
   static JFrame frame;
-  
+  /**
+   * This method allows the other classes to get the value of the difficulty
+   * */
   public static int getValue(){
       return value;
   }
-  
+  /**
+   * This makes a slider that is aligned to easy, medium, and hard.
+   * The slider saves its position in a variable called value
+   * everytime that it is changed. There is a button that goes back 
+   * to the main Startup
+   * @param ArtificialI is the name of the slider. 
+   * */
   public Difficulty(JSlider ArtificialI) {
 
     super(true);
@@ -49,6 +63,9 @@ public class Difficulty extends JPanel {
       add(button, BorderLayout.SOUTH);
         
   }
+    /**
+     * This is the frame for the JSlider and button 
+     * */
     public static void main(String args[]) {
       JSlider ArtificialI = new JSlider();
       frame = new JFrame("Difficulty");
@@ -59,6 +76,9 @@ public class Difficulty extends JPanel {
       frame.pack();
       frame.setVisible(true);
      }
+     /**
+      * This class is specific to the bvutton listener.
+      * */
      private class ButtonListener implements ActionListener
      {
         private String[] args;
