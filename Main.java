@@ -3,15 +3,42 @@ import java.awt.*;
 import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.*;
+/***
+*This Main class is for the functionality for the 
+* Grid and for the AI and Buttons.
+*
+*@author Rishi
+*@version 1.1.2
+*@since 3:29 PM 6/5/16
+***/
 
 
 public class Main {
-
+   /**
+    * This is so that the frame is accesible from all 
+    * over the program
+    * */
+    
    public static JFrame frame;
-   public static Grid mainPanel;
-   public static Player comp;
-   public static HumanPlayer h;
    
+   /**
+    * This is so that the panel, the grid
+    * object, can ce accesses from all over
+    * the program.
+    * */
+   public static Grid mainPanel;
+   /**
+    * This is the player class for 
+    * the artificial intelligence
+   */
+   public static Player comp;
+   /**
+    * This is the class for the human class for clicking the buttons.
+    * */
+   public static HumanPlayer h;
+   /**
+    * The main method.
+    * */
    public static void main(String[] args) {
       
      mainPanel = new Grid(50, 50, 17, 0.27);
