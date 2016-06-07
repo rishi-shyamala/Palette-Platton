@@ -6,14 +6,36 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.event.*;
 
+/***
+*This Difficulty class will prompt the player for the difficulty of the AI.
+*
+*@author Rishi
+*@version 1.1.2
+*@since 11:13 PM 6/5/16
+***/
+
 public class Difficulty extends JPanel {
+  /**
+   * This static variable is what we translate the user's pick into.
+  **/
   public static int value;
+   /**
+   * This static variable stores the public Frame;
+  **/
   static JFrame frame;
   
+  /**
+   * This is an accessor method for the variable value.
+   * @return int the variable value
+  **/
   public static int getValue(){
       return value;
   }
   
+  /**
+   * This is the constructor for the Difficulty class.
+   * @param ArtificialI the JSlider input
+  **/
   public Difficulty(JSlider ArtificialI) {
 
     super(true);
@@ -47,6 +69,9 @@ public class Difficulty extends JPanel {
       add(button, BorderLayout.SOUTH);
         
   }
+  /**
+   * This is the main method for Difficulty.java class.
+  **/
     public static void main(String args[]) {
       JSlider ArtificialI = new JSlider();
       frame = new JFrame("Difficulty");
@@ -57,9 +82,16 @@ public class Difficulty extends JPanel {
       frame.pack();
       frame.setVisible(true);
      }
+    /**
+    * This is Button Listener class implements ACtionListener.
+    **/
      private class ButtonListener implements ActionListener
      {
         private String[] args;
+        /**
+        * This method actionPerformed performs the 
+        * action when the button is clicked.
+        **/
         public void actionPerformed(ActionEvent e)
         {
         frame.dispose();
