@@ -1,7 +1,22 @@
-//@author 2019cbi
-//@Version 1.0
+/***
+*This MediumPlayer class is an AI that will choose
+*the best move at the step without thinking
+*ahead.
+*
+*@author Chris
+*@version 1.1.2
+*@since 10:41 PM 6/5/16
+***/
 
-public class MediumPlayer extends Player{
+public class MediumPlayer extends Player{'
+   /***
+   *This will think of the move the AI plays.
+   *@param colors stores the colors
+   *the AI will use
+   *@return GamePixel[][] returns the 
+   *array of the updated Colors with the
+   *AI's move made inside of it
+   ***/
    public GamePixel[][] thinkMove(GamePixel[][] colors)
    {
       //flood search stuff
@@ -30,20 +45,4 @@ public class MediumPlayer extends Player{
       //printColors(colors);
       return colors;
    }
-   
-   public GamePixel[][] returnMove()
-   {
-      GamePixel[][] a = new GamePixel[1][1]; //filler
-      return a;
-   }
-   
-//    public boolean isTouchingAIBlock(GamePixel[][] colors, int row, int col){
-//       GamePixel oC = GamePixel.CYAN;
-//       if((row > 0) && colors[row-1][col].getColor().equals(oC.getColor()))  return true;
-//       if((row < colors.length-1) && colors[row+1][col].getColor().equals(oC.getColor()))  return true;
-//       if((col > 0) && colors[row][col-1].getColor().equals(oC.getColor()))  return true;
-//       if((col < colors[0].length-1) && colors[row][col+1].getColor().equals(oC.getColor()))  return true;
-//       return false;
-//          
-//    } 
 }
