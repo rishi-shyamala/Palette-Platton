@@ -8,7 +8,7 @@
 *@since 10:41 PM 6/5/16
 ***/
 
-public class MediumPlayer extends Player{'
+public class MediumPlayer extends Player{
    /***
    *This will think of the move the AI plays.
    *@param colors stores the colors
